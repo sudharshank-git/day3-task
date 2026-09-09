@@ -1,0 +1,156 @@
+/* Base Desktop Styles */
+*{
+    margin: 0;
+    padding: 0;
+}
+main{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+}
+.two-side{
+  border-radius: 200px;
+  height: 80px;
+  width: 200px;
+  background-color: #20e1ff;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+  0px 0px 10px #20e1ff,
+  0px 0px 10px #20e1ff,
+  0px 0px 10px #20e1ff;
+}
+.two-side::before{
+  content: "☀️";
+  color: rgb(0, 0, 0);
+  font-size: 3rem;
+  font-weight: 900;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 70px;
+  background-color: rgb(255, 246, 72);
+  position: absolute;
+  margin: 5px;
+  border-radius: 50%;
+  transition: all 0.4s ease;
+  box-shadow: 
+  0px 0px 10px rgb(255, 227, 66),
+  0px 0px 10px rgb(255, 227, 66),
+  0px 0px 10px rgb(255, 227, 66);
+}
+main>.body{
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #333;
+  color: white;
+}
+ 
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+ 
+.nav-links a {
+  color: white;
+  text-decoration: none;
+}
+ 
+/* Hide the checkbox completely */
+
+.menu-toggle {
+  display: none;
+}
+
+.menu-toggle:checked ~ main{
+  background-color: black;
+  .body{
+    .two-side{
+      background-color: black;
+      box-shadow: 
+  0px 0px 10px rgb(215, 215, 215),
+  0px 0px 10px rgb(216, 216, 216),
+  0px 0px 10px rgb(213, 213, 213);
+    }
+    .two-side::before{
+      transform: translateX(120px);
+      background-color: rgb(255, 255, 255);
+      color: rgb(0, 0, 0);
+      content: "🌙";
+      box-shadow: 
+  0px 0px 10px rgb(255, 255, 255),
+  0px 0px 10px rgb(255, 255, 255),
+  0px 0px 10px rgb(255, 255, 255);
+    }
+  }
+}
+/* Hide hamburger icon by default on desktop */
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+ 
+.hamburger span {
+  background-color: white;
+  height: 3px;
+  width: 25px;
+  transition: all 0.3s ease;
+}
+ 
+/* Mobile Responsive Styles */
+
+@media screen and (max-width: 768px) {
+  .menu-toggle:checked ~ main{
+    background-color: black;
+  }
+  .hamburger {
+    transform: translate(5px, 5px);
+    display: flex; /* Show hamburger on mobile */
+  }
+  .nav-links {
+    display: none; /* Hide menu links by default */
+    position: absolute;
+    top: 59px;
+    left: 0;
+    width: 100%;
+    border-top: 3px solid black;
+    gap:10px;
+    background-color: #333;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+  }
+  /* The Magic: When checkbox is checked, display the menu */
+  .menu-toggle:checked ~ .nav-links {
+    display: flex;
+  }
+  /* Optional: Animate hamburger into an 'X' when checked */
+  .menu-toggle:checked ~ .hamburger span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  .menu-toggle:checked ~ .hamburger span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle:checked ~ .hamburger span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+}
+
+ 
